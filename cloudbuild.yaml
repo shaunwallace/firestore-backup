@@ -5,3 +5,4 @@ steps:
   - 'PROJECT=$PROJECT_ID'
   - 'DATABASE_URL=$DATABASE_URL'
   - 'BUCKET=$BUCKET'
+images: ['gcr.io/$PROJECT_ID/$IMAGE_NAME']
