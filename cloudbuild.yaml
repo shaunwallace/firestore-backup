@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-image', '.']
+  env:
+  - 'PROJECT=$PROJECT_ID'
+  - 'DATABASE_URL=$DATABASE_URL'
+  - 'BUCKET=$BUCKET'

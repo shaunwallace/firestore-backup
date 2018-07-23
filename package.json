@@ -1,0 +1,14 @@
+{
+  "name": "firebase-backup",
+  "version": "0.0.1",
+  "description": "Cron job script used to export firebase collection data to google cloud storage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shaun Wallace",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@fanai/firestore-utils": "0.0.1-alpha.5"
+  }
+}
