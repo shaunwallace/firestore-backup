@@ -4,4 +4,4 @@ COPY package.json package-lock.json /app/
 RUN npm install
 COPY . /app
 EXPOSE 3000
-CMD node index.js export $_DATABASE_URL --collections "*" --bucket $_BUCKET
+CMD node index.js export ${_DATABASE_URL} --collections "*" --bucket ${_BUCKET}
