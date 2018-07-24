@@ -1,0 +1,27 @@
+version: '3.4'
+services:
+
+  backup:
+    build: .
+    image: gcr.io/${PROJECT_ID:?err}/${IMAGE_NAME:-firebase-backup}
+    restart: 'no'
+
+  export:
+    image: gcr.io/${PROJECT_ID:?err}/${IMAGE_NAME:-firebase-backup}
+    depends_on:
+      - backup
+    command: [
+      'export', '${DATABASE_URL}',
+      '--collections', '"*"',
+      '--bucket', '${BUCKET}',
+    ]
+
+  import:
+    image: gcr.io/${PROJECT_ID:?err}/${IMAGE_NAME:-firebase-backup}
+    depends_on:
+      - backup
+    command: [
+      'import', '${DATABASE_URL}',
+      '--collections', '"*"',
+      '--bucket', '${BUCKET}',
+    ]
