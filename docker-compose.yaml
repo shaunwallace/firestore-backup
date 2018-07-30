@@ -2,26 +2,31 @@ version: '3.4'
 services:
 
   backup:
-    build: .
+    build:
+      context: .
     image: gcr.io/${PROJECT_ID:?err}/${IMAGE_NAME:-firebase-backup}
     restart: 'no'
 
   export:
     image: gcr.io/${PROJECT_ID:?err}/${IMAGE_NAME:-firebase-backup}
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=./serviceAccount.json
     depends_on:
       - backup
     command: [
       'export', '${DATABASE_URL}',
-      '--collections', '"*"',
+      '--collections', '*',
       '--bucket', '${BUCKET}',
     ]
 
   import:
     image: gcr.io/${PROJECT_ID:?err}/${IMAGE_NAME:-firebase-backup}
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=./serviceAccount.json
     depends_on:
       - backup
     command: [
       'import', '${DATABASE_URL}',
-      '--collections', '"*"',
+      '--collections', '*',
       '--bucket', '${BUCKET}',
     ]
