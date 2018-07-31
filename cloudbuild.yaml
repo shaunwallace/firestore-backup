@@ -9,12 +9,12 @@ steps:
   - --keyring=$_KEYRING
   - --key=$_KEY
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/$_IMAGE_NAME:-firebase-backup', '.']
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/$_IMAGE_NAME', '.']
   env:
     - 'PROJECT=$PROJECT_ID'
     - 'DATABASE_URL=$_DATABASE_URL'
     - 'BUCKET=$_BUCKET'
-    - 'IMAGE_NAME=$_IMAGE_NAME'
+    - 'IMAGE_NAME=$_IMAGE_NAME:-firebase-backup'
     - 'GOOGLE_APPLICATION_CREDENTIALS=serviceAccount.json'
 images: ['gcr.io/$PROJECT_ID/$_IMAGE_NAME']
 substitutions:

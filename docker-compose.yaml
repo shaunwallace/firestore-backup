@@ -4,11 +4,11 @@ services:
   backup:
     build:
       context: .
-    image: gcr.io/${PROJECT_ID:?err}/${IMAGE_NAME:-firebase-backup}
+    image: gcr.io/${PROJECT_ID:?err}/${IMAGE_NAME}
     restart: 'no'
 
   export:
-    image: gcr.io/${PROJECT_ID:?err}/${IMAGE_NAME:-firebase-backup}
+    image: gcr.io/${PROJECT_ID:?err}/${IMAGE_NAME}
     environment:
       - GOOGLE_APPLICATION_CREDENTIALS=./serviceAccount.json
     depends_on:
@@ -20,7 +20,7 @@ services:
     ]
 
   import:
-    image: gcr.io/${PROJECT_ID:?err}/${IMAGE_NAME:-firebase-backup}
+    image: gcr.io/${PROJECT_ID:?err}/${IMAGE_NAME}
     environment:
       - GOOGLE_APPLICATION_CREDENTIALS=./serviceAccount.json
     depends_on:
